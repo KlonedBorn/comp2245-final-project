@@ -13,8 +13,6 @@ CREATE TABLE `Users` (
   `created_at` DATE DEFAULT NOW()
 ) ENGINE=MyISAM AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8mb4; 
 
-INSERT INTO Users (firstname, lastname, email, password, role) VALUES ('main', 'admin','admin2@project.com','kmtOUB1KmJJq.', 'admin');
-
 DROP TABLE IF EXISTS `Contacts`;
 CREATE TABLE `Contacts` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
