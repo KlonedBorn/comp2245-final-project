@@ -7,7 +7,7 @@ CREATE TABLE `Users` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `firstname` char(35) NOT NULL DEFAULT '',
   `lastname` char(35) NOT NULL DEFAULT '',
-  `password` char(20) NOT NULL DEFAULT '',
+  `password` char(65) NOT NULL DEFAULT '',
   `email` char(35) NOT NULL DEFAULT '',
   `role` char(20) NOT NULL DEFAULT '',
   `created_at` DATE DEFAULT NOW()
