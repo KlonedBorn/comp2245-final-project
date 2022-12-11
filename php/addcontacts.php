@@ -1,68 +1,64 @@
-<?php session_start();
+<?php 
     require_once 'init-env.php';
+    require_once 'session.php';
     $stmt = $db->query ("SELECT * FROM Contacts");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // if (!isset($_SESSION['email']))
-    // {
-    // header('Location: userlogout.php');
-    // }
-    // if($_SESSION['logined_user']!='admin@project2.com'){
-    //      $_SESSION["denied"]="denied";
-    //     header("Location: dashboard.php");
-    // }    
-
-//include("env-config.php");
-
+ 
+if (isset($_SESSION['email']))
+{
 $buttonValue = 0;
 if (isset($_GET['buttonValue'])) //might need to be post
 {
-    $buttonValue = 1;
+    $buttonValue = $_GET['buttonValue'];
 }
 
 if ($buttonValue == 1) 
 {
-$title = $_GET['title'];
-$firstname = $_GET['fname'];
-$lastname = $_GET['lname'];
-$email = $_GET['email'];
-$telephone = $_GET['telephone'];
-$company = $_GET['company'];
-$assigned = $_GET['assigned'];
-$assignedValue =0;
-$type = $_GET['type'];
+    $title = $_GET['title'];
+    $firstname = $_GET['fname'];
+    $lastname = $_GET['lname'];
+    $email = $_GET['email'];
+    $phone = $_GET['telephone'];
+    $company = $_GET['company'];
+    $assigned = $_GET['assigned'];
+    $assignedValue = 0;
+    $type = $_GET['type'];
 
-foreach ($results as $employee):
+    $emailCheck = false;
+    $nameCheck = false;
+    $phoneCheck = false;
+    $totalChecks = false;
+
+    foreach ($results as $employee): 
     {
-     if ( ($assigned == ($employee['firstname']) . " " . $employee['lastname']) ) 
-     {
-        $assignedValue = $employee['id'];
-     }
+        if ( ($assigned == ( $employee['firstname'] . " " . $employee['lastname'] )) ) 
+        {
+            $assignedValue = $employee['id'];
+        }
     }
- endforeach;
+    endforeach;
 
-$emailRegex = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/";
+    if( preg_match($nameRegex, $firstname)  && preg_match($nameRegex, $lastname) ) {$nameCheck = true;}
+    if( preg_match($emailRegex,$email) ) {$emailCheck = true;}
+    if( preg_match($phoneRegex,$phone) ) {$phoneCheck = true;}
+    
+    if  ($emailCheck && $phoneCheck && $nameCheck) {$totalChecks = true;}
 
-$totalChecks = false;
+    if ($totalChecks)
+    {
+        $sql = "INSERT INTO Contacts (title, firstname, lastname, email, telephone, company, assigned_to, type)
+        VALUES ('$title', '$firstname', '$lastname', '$email', '$phone', '$company', '$assignedValue', '$type')";     
+        if ($db->query($sql) == TRUE ) 
+        {
+            echo "Contact successfully created.";
+        }
+        else 
+        {
+            echo ("Error: " . $sql . "<br>" . $db->error);
+        }
+    }
 
-
-// if ($totalChecks == true)
-{
-    $sql = "INSERT INTO Contacts (title, firstname, lastname, email, telephone, company, assigned_to, type)
-    VALUES ('$title', '$firstname', '$lastname', '$email', '$telephone', '$company', '$assignedValue', '$type')";     
+    else {echo "One of the fields was entered incorrectly";}
 }
-
-if ($db->query($sql) == TRUE ) 
-{
-    echo "Contact successfully created.";
-   
 }
-
-else 
-{
-    echo "Error: " . $sql . "<br>" . $db->error;
-}
-}
-
-
-
 ?>

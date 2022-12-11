@@ -14,6 +14,11 @@
     }
     global $db;
     $db = construct_pdo();
+    $nameRegex = "/^[a-z ,.'-]+$/i";
+    $phoneRegex = "/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/";
+    $passwordRegex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i";
+    $emailRegex = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i";
+    
     // Ensure Lyn-Fatt knows to add his own admin user.
     // $firstname = 'Admin';
     // $lastname = 'Mike';

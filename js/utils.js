@@ -1,22 +1,29 @@
-// Copyright 2022 Kyle King
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-
 export function create_header_html(){
 
 }
-
+// TO-DO make a universal form validation function or look for one online.
+export function validate_form(field_ids,patterns){
+	let errormsg = document.getElementById("error");
+	for (let id = 0; id < field_ids.length; id++) {
+		// Init
+		const form_elem_id = field_ids[id];
+		const form_elem = document.getElementById(form_elem_id);
+		const re_pattern = patterns[id];
+		const re_exp = RegExp(re_pattern,'gmi')
+		errormsg.innerText = "";
+		if(!form_elem) {
+			errormsg.innerText = `Form field \'${form_elem_id}\' not found`;
+		} else {
+			form_elem.style.borderColor = "black";
+			if ( !re_exp.exec(form_elem.value) ) {
+				form_elem.style.borderColor = "red";
+				errormsg.innerText = "Please enter all fields";
+				return false;
+			}
+		}
+	}
+	return true;
+}
 /**
  * Credit to w3 for the function
  * https://www.w3schools.com/howto/howto_html_include.asp
@@ -85,12 +92,14 @@ export function execute_http_request(method,url,param) {
 }
 
 export function verify_php_session(){
-  let res = execute_http_request('GET','./php/home.php',null)
+  let res = execute_http_request('GET','./php/session2.php',null)
   try {
       const resp = JSON.parse(res)
       if(resp['status'] != 200){
           alert("User must log-in")
           window.location.href = './login.html'
+      } else {
+        return resp
       }      
   } catch (SyntaxError) {
      console.error("JSON error results: " + res) 

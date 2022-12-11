@@ -1,16 +1,8 @@
 <?php
     session_start();
-    if(isset($_SESSION['email'])) {
-        $response = array(
-            'status' => 200,
-            'message' => 'Login confirmed',
-        );
-        echo json_encode($response);
-    } else {
-        $response = array(
-            'status' => 404,
-            'message' => 'User not logged in'
-        );
-        echo json_encode($response);
+    if(!isset($_SESSION['email'])) {
+        header("Location: ../login.html");
+        throw new Exception("Error Processing Request; No User Log-In", 1);
+        exit;
     }
 ?>

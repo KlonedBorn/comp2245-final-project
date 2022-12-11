@@ -1,9 +1,22 @@
 //THIS BETTER NOT BE BULLSHIT
 import { execute_http_request } from './utils.js'
-import { include_html } from './utils.js'
 import { verify_php_session } from './utils.js'
+import {validate_form} from './utils.js'
 
 const httpRequest = new XMLHttpRequest()
+const form_fields = new Array(
+	'firstname',
+	'lastname',
+	'email',
+	'telephone',
+);
+
+const form_patterns = new Array(
+	"^[a-z ,.'-]+$",
+	"^[a-z ,.'-]+$",
+	"^[a-zA-Z0-9_-]+@[a-zA-Z_-]+?\\.[a-zA-Z]{2,3}$",
+	"^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$",
+);
 
 function verify_fields() {
 	var title = document.getElementById("title");
@@ -16,7 +29,7 @@ function verify_fields() {
 	var assigned = document.getElementById("assigned");
 	var errormsg = document.getElementById("error");
 	var check = true;
-	errormsg.innerHTML = "";
+	errormsg.innerText = "";
     title.style.borderColor = "black";
     fname.style.borderColor = "black";
     lname.style.borderColor = "black";
@@ -28,13 +41,13 @@ function verify_fields() {
 	
 	if (title.value == "") {
 		title.style.borderColor = "red";
-		errormsg.innerHTML = "Please enter all fields";
+		errormsg.innerText = "Please enter all fields";
 		check = false;
 	}
 
     if (fname.value == "") {
 		fname.style.borderColor = "red";
-		errormsg.innerHTML = "Please enter all fields";
+		errormsg.innerText = "Please enter all fields";
 		check = false;
 	}
 
@@ -84,8 +97,7 @@ function verify_fields() {
 const onloadRequest = new XMLHttpRequest()
 window.onload = () => {
     verify_php_session()
-    document.getElementById('assigned').innerHTML 
-    =execute_http_request('GET','php/employee.php',null)
+    document.getElementById('assigned').innerHTML =execute_http_request('GET','php/employee.php',null)
     const btn_add = document.getElementById('addBtn')
 	httpRequest.onreadystatechange = () => {
 		if(httpRequest.readyState === XMLHttpRequest.DONE) {
@@ -107,7 +119,7 @@ window.onload = () => {
 		const tf_assigned = document.getElementById('assigned').value
 		const tf_button_value = document.getElementById('addBtn').value
 
-        if(verify_fields())
+        if(validate_form(form_fields,form_patterns))
 		{
 			httpRequest.open('POST',`./php/addcontacts.php?title=${tf_title}&fname=${tf_name1}&lname=${tf_name2}&email=${tf_email}&telephone=${tf_telephone}&company=${tf_company}&assigned=${tf_assigned}&type=${tf_type}&buttonValue=${tf_button_value}`)
         	httpRequest.send(null)

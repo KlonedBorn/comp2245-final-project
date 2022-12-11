@@ -4,8 +4,6 @@
     if(isset($_GET['email']) && isset($_GET['password'])){
         $email = $_GET['email'];
         $pswd = $_GET['password'];
-        $passwordRegex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i";
-        $emailRegex = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i";
         if( preg_match($emailRegex,$email) && preg_match($passwordRegex,$pswd) ) {
             $sqlres = $db->query("SELECT id,firstname,lastname,role,email,password FROM Users WHERE email='$email'");
             $user = $sqlres->fetch(PDO::FETCH_ASSOC);
