@@ -5,7 +5,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 function get_options($results) {
     $var = "";
     foreach ($results as $employee):
-        $var = $var. "<option value =" . $employee['firstname'] . " " .$employee['lastname'] .">" . $employee['firstname'] . " " .$employee['lastname'] . "</option>";
+        $var = $var. "<option value ="."\"".$employee['firstname']." ".$employee['lastname']."\"".">" . $employee['firstname'] . " " .$employee['lastname'] . "</option>";
     endforeach;
     return $var;
 }

@@ -1,7 +1,7 @@
 <?php 
     require_once 'init-env.php';
     require_once 'session.php';
-    $stmt = $db->query ("SELECT * FROM Contacts");
+    $stmt = $db->query ("SELECT * FROM Users");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
  
 if (isset($_SESSION['email']))
@@ -31,7 +31,7 @@ if ($buttonValue == 1)
 
     foreach ($results as $employee): 
     {
-        if ( ($assigned == ( $employee['firstname'] . " " . $employee['lastname'] )) ) 
+        if ( ($assigned == ($employee['firstname'] . " " . $employee['lastname']) ) ) 
         {
             $assignedValue = $employee['id'];
         }

@@ -521,3 +521,12 @@ table tbody tr .view:hover{
 	height: 45px;
 	padding: 10px;
 }
+
+#SalesLead 
+{	background-color : yellow;
+}
+
+#Support
+{
+	background-color : purple;
+}
