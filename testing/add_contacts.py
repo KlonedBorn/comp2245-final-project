@@ -73,14 +73,14 @@ fp_company = open('./testing/companys.txt','r').readlines()
 if __name__ == "__main__":
     browser = init_driver()
     is_logged_in=login_user(browser)
-    # if(is_logged_in == True):
-    #     fill_form(root_url + "/addcontacts.html",browser,[
-    #         FormItem('select',By.ID,'title',random.randint(0,2)),
-    #         FormItem('input',By.ID,'firstname',fp_names[random.randint(0,len(fp_names)-1)]),
-    #         FormItem('input',By.ID,'lastname',fp_names[random.randint(0,len(fp_names)-1)]),
-    #         FormItem('input',By.ID,'email',fp_emails[random.randint(0,len(fp_emails)-1)]),
-    #         FormItem('input',By.ID,'telephone',fp_phnumbers[random.randint(0,len(fp_phnumbers)-1)]),
-    #         FormItem('input',By.ID,'company',fp_company[random.randint(0,len(fp_company)-1)]),
-    #         FormItem('select',By.ID,'type',random.randint(0,1))
-    #     ])
-    # browser.close()
+    if(is_logged_in == True):
+        fill_form(root_url + "/addcontacts.html",browser,[
+            FormItem('select',By.ID,'title',random.randint(0,2)),
+            FormItem('input',By.ID,'firstname',fp_names[random.randint(0,len(fp_names)-1)]),
+            FormItem('input',By.ID,'lastname',fp_names[random.randint(0,len(fp_names)-1)]),
+            FormItem('input',By.ID,'email',fp_emails[random.randint(0,len(fp_emails)-1)]),
+            FormItem('input',By.ID,'telephone',fp_phnumbers[random.randint(0,len(fp_phnumbers)-1)]),
+            FormItem('input',By.ID,'company',fp_company[random.randint(0,len(fp_company)-1)]),
+            FormItem('select',By.ID,'type',random.randint(0,1))
+        ])
+    browser.close()

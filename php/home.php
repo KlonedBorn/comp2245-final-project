@@ -36,7 +36,7 @@ foreach ($results as $table):
         {
             echo "<td id = 'Support'>" . $table['type'] . "</td>";
         }
-       echo "<td> <a href ='' alt = 'Contact Info Should go here'>View</a> </td> </tr>";
+       echo "<td> <a href= php/notes.php?contact=".$table['id']." alt = 'Contact Info Should go here'>View</a> </td> </tr>";
     }
     
 endforeach;
@@ -55,7 +55,7 @@ foreach ($results as $table):
         <td>" . $table['email'] . "</td>
         <td>" . $table['company'] . "</td>
         <td id = 'SalesLead'>" . $table['type'] . "</td>
-        <td> <a href ='' alt = 'Contact Info Should go here'>View</a> </td> </tr>";
+        <td> <a href= php/notes.php?contact=".$table['id']." alt = 'Contact Info Should go here'>View</a> </td> </tr>";
         }
     }
     
@@ -75,7 +75,7 @@ foreach ($results as $table):
         <td>" . $table['email'] . "</td>
         <td>" . $table['company'] . "</td>
         <td id = 'Support'>" . $table['type'] . "</td>
-        <td> <a href ='' alt = 'Contact Info Should go here'>View</a> </td> </tr>";
+        <td> <a href= php/notes.php?contact=".$table['id']." alt = 'Contact Info Should go here'>View</a> </td> </tr>";
     }
     }
     
@@ -102,7 +102,7 @@ foreach ($results as $table):
         {
             echo "<td id = 'Support'>" . $table['type'] . "</td>";
         }
-       echo "<td> <a href ='' alt = 'Contact Info Should go here'>View</a> </td> </tr>";
+       echo "<td> <a href =php/notes.php?contact=".$table['id']." alt = 'Contact Info Should go here'>View</a> </td> </tr>";
 
         }
     }

@@ -23,6 +23,7 @@ if ($buttonValue == 1)
     $assigned = $_GET['assigned'];
     $assignedValue = 0;
     $type = $_GET['type'];
+    $createdBy = $_SESSION['id'];
 
     $emailCheck = false;
     $nameCheck = false;
@@ -46,8 +47,8 @@ if ($buttonValue == 1)
 
     if ($totalChecks)
     {
-        $sql = "INSERT INTO Contacts (title, firstname, lastname, email, telephone, company, assigned_to, type)
-        VALUES ('$title', '$firstname', '$lastname', '$email', '$phone', '$company', '$assignedValue', '$type')";     
+        $sql = "INSERT INTO Contacts (title, firstname, lastname, email, telephone, company, assigned_to, type, created_by)
+        VALUES ('$title', '$firstname', '$lastname', '$email', '$phone', '$company', '$assignedValue', '$type', '$createdBy' )";     
         if ($db->query($sql) == TRUE ) 
         {
             echo "Contact successfully created.";

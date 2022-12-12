@@ -547,4 +547,5 @@ table tbody tr .view:hover{
 	background-color: purple;
 	color:white;
 	border-radius : 25px;
+	vertical-align: middle;
 }
