@@ -1,5 +1,7 @@
 import { execute_http_request } from './utils.js'
 import { include_html } from './utils.js'
+import { loggedin } from './utils.js'
+
 
 // Checks if email and password input fields are empty or not.
 function onclick_validate() {
@@ -59,6 +61,7 @@ function onclick_login() {
 }
 
 window.onload = (evt) => {
+    loggedin()
     include_html()
     const btn_login = document.getElementById('loginbtn')
     btn_login.onclick = onclick_login

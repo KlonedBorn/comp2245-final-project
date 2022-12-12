@@ -1,6 +1,13 @@
 <?php
     require_once 'init-env.php';
     header('Content-Type: application/json; charset=utf-8');
+
+    // // if (isset($_SESSION['email'])) 
+    // {
+        // code to change
+    //     exit;
+    // }
+
     if(isset($_GET['email']) && isset($_GET['password'])){
         $email = $_GET['email'];
         $pswd = $_GET['password'];

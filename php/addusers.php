@@ -8,6 +8,9 @@ function alert($message)
     echo "<script type = 'text/javascript'> alert('".$message."');</script>";
 }
 
+if ( isset($_SESSION['role']) )
+{
+
 if ($_SESSION['role'] == "Admin") 
 {
 
@@ -60,7 +63,9 @@ if ($_SESSION['role'] == "Admin")
     }
 
     }
+
 }
 
 elseif ($_SESSION['role'] == "Member") {echo "Only Admins may create users.";}
+}
 ?>

@@ -102,9 +102,16 @@ window.onload = () => {
 	httpRequest.onreadystatechange = () => {
 		if(httpRequest.readyState === XMLHttpRequest.DONE) {
 			if( httpRequest.status === 200 ) {
-				console.log(httpRequest.responseText)
+				alert(httpRequest.responseText)
+				const in_all = document.getElementsByTagName('input')
+				for (const input in in_all) {
+					if (Object.hasOwnProperty.call(in_all, input)) {
+						const element = in_all[input];
+						element.value = ""
+					}
+				}
 			} else {
-				console.log("Error");
+				alert("Error");
 			}
 		}
 	} 

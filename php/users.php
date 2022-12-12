@@ -5,6 +5,13 @@ require_once 'session.php';
 $stmt = $db->query ("SELECT * FROM Users");
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+function alert($message) 
+{
+    echo "<script type='text/javascript'> alert('Message´s 1st line\nMessage´s 2nd line');</script>";
+    echo '<script type="text/javascript">alert("' . $message . '")</script>'; 
+echo "<script type = 'text/javascript'> alert('$message');</script>";
+}
+
 if ( isset($_SESSION['role']) )
 {
 
@@ -36,6 +43,8 @@ elseif ($_SESSION['role'] == "Member")
 echo("Only Admins may view the users. You are a member.");
 echo alert("Only Admins may view the users. You are a member.");
 alert("Only Admins may view the users. You are a member.");
+echo alert('Only Admins may view the users. You are a member.');
+alert('Only Admins may view the users. You are a member.');
 }
 
 else 
@@ -45,12 +54,6 @@ echo alert("Only Admins may view the users. You are not signed in.");
 alert("Only Admins may view the users. You are not signed in.");
 }
 
-}
-
-
-function alert($message) 
-{
-echo "<script type = 'text/javascript'> alert('.$message.');</script>";
 }
 
 ?>

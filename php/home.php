@@ -12,7 +12,7 @@ if ( isset($_SESSION['email']) )
 echo 
 "<table>
 <tr>
-<th>Name</th> <th>Email</th> <th>Company</th> <th>Type</th>
+<th>Name</th> <th>Email</th> <th>Company</th> <th>Type</th> <th></th>
 </tr>";
 
 if ( !empty($_GET['buttonValue']) ) 
@@ -36,7 +36,7 @@ foreach ($results as $table):
         {
             echo "<td id = 'Support'>" . $table['type'] . "</td>";
         }
-       echo "</tr>";
+       echo "<td> <a href ='' alt = 'Contact Info Should go here'>View</a> </td> </tr>";
     }
     
 endforeach;
@@ -55,7 +55,7 @@ foreach ($results as $table):
         <td>" . $table['email'] . "</td>
         <td>" . $table['company'] . "</td>
         <td id = 'SalesLead'>" . $table['type'] . "</td>
-        </tr>";
+        <td> <a href ='' alt = 'Contact Info Should go here'>View</a> </td> </tr>";
         }
     }
     
@@ -75,8 +75,8 @@ foreach ($results as $table):
         <td>" . $table['email'] . "</td>
         <td>" . $table['company'] . "</td>
         <td id = 'Support'>" . $table['type'] . "</td>
-        </tr>";
-        }
+        <td> <a href ='' alt = 'Contact Info Should go here'>View</a> </td> </tr>";
+    }
     }
     
 endforeach;
@@ -87,17 +87,23 @@ elseif ($buttonValue == 4)
 {
 foreach ($results as $table): 
     {
-        if($table['id'] == $_SESSION['id']) 
+        if($table['assigned_to'] == $_SESSION['id']) 
         {
         echo 
         "<tr>
         <td>" .$table['title'] . $table['firstname'] . " " .$table['lastname'] . "</td>
         <td>" . $table['email'] . "</td>
-        <td>" . $table['company'] . "</td>
-        <td>" . $table['type'] . "</td>
-        </tr>";
-        } else {
-            echo  $_SESSION['id'];;
+        <td>" . $table['company'] . "</td>";
+        if ($table['type'] == "Sales Lead") 
+        {
+            echo "<td id = 'SalesLead'>" . $table['type'] . "</td>";
+        }
+        elseif($table['type'] == "Support") 
+        {
+            echo "<td id = 'Support'>" . $table['type'] . "</td>";
+        }
+       echo "<td> <a href ='' alt = 'Contact Info Should go here'>View</a> </td> </tr>";
+
         }
     }
     

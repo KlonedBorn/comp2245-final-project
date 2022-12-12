@@ -20,9 +20,9 @@
     $emailRegex = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i";
     
     // Ensure Lyn-Fatt knows to add his own admin user.
-    // $firstname = 'Admin';
-    // $lastname = 'Mike';
-    // $email = 'admin-mike@facade.com';
+    // $firstname = 'Conner';
+    // $lastname = 'Alden';
+    // $email = 'connor-alden@facade.com';
     // $password = 'FinalC0unt';
     // $hash = password_hash($password,PASSWORD_BCRYPT);
     // $role = 'Admin';

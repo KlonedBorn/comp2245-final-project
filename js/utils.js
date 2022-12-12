@@ -106,6 +106,21 @@ export function verify_php_session(){
   }
 }
 
+export function loggedin(){
+  let res = execute_http_request('GET','./php/session2.php',null)
+  try {
+      const resp = JSON.parse(res)
+      if(resp['status'] == 200){
+          alert("User already logged in.")
+          window.location.href = './home.html'
+      } else {
+        return resp
+      }      
+  } catch (SyntaxError) {
+     console.error("JSON error results: " + res) 
+  }
+}
+
 function get_html_resource(file){
 
 }

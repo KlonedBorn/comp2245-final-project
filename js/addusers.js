@@ -1,4 +1,7 @@
 //THIS BETTER NOT BE BULLSHIT
+
+import {validate_form} from './utils.js'
+
 const httpRequest = new XMLHttpRequest()
 
 const form_fields = new Array(
@@ -76,6 +79,13 @@ window.onload = () => {
         if(httpRequest.readyState == XMLHttpRequest.DONE){
             if(httpRequest.status == 200){
 				alert(httpRequest.responseText);
+				const in_all = document.getElementsByTagName('input')
+				for (const input in in_all) {
+					if (Object.hasOwnProperty.call(in_all, input)) {
+						const element = in_all[input];
+						element.value = ""
+					}
+				}
             }
             else
             {
